@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const imageSchema = new Schema(
-  {
-    images: { type: String, required: true },
+const rawImageSchema = new mongoose.Schema({
+  images: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  exifImage: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false, // Set to false if it's optional
+  },
+});
 
-let RawImage = mongoose.model("RawImage", imageSchema);
+const RawImage = mongoose.model("RawImage", rawImageSchema);
 
 module.exports = RawImage;

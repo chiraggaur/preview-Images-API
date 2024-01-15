@@ -16,7 +16,7 @@ let uploadedImage = {
   // Insert Data/Image on user Upload
   uploadImages: async (req, res, next) => {
     try {
-      // // Get the uploaded file path
+      // Get the uploaded file path
       const images = `${req.protocol}://${req.get("host")}/uploads/${
         req.file.filename
       }`;
@@ -24,7 +24,8 @@ let uploadedImage = {
       console.log("Image Uploaded successfully");
       res.redirect(`/${req.file.filename}`);
     } catch (err) {
-      res.status(500).send("Error while uploading", err);
+      console.error("Error while uploading", err);
+      res.status(500).send(`Error while uploading: ${err}`); // Updated this line
     }
     // console.log(req.file);
   },

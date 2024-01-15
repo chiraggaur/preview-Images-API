@@ -10,6 +10,10 @@ const storage = multer.diskStorage({
     const uniqueSuffix = Date.now();
     cb(null, uniqueSuffix + "-" + file.originalname);
   },
+  limits: {
+    fileSize: 1024 * 1024 * 50, // 50 MB limit (adjust as needed)
+  },
+  // cb(null, true);
   // fileFilter: function (req, file, cb) {
   //   // Allow specific file types (e.g., JPEG, PNG, ARW)
   //   const allowedMimeTypes = ["image/jpeg", "image/png"];
